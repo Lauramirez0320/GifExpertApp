@@ -1,12 +1,17 @@
 import { FormEvent, useState } from "react";
 
-const AddCategory = ({ onAddCategory }) => {
-  const [inputValue, setInputValue] = useState();
+export interface IAddCategory {
+  onAddCategory: (valueCategory: string) => void;
+};
 
-  const onChangeHandler = ({ target }) => {
+const AddCategory  = (props:IAddCategory) => {
+  const {onAddCategory} = props
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const onChangeHandler = ({ target }: any) => {
     setInputValue(target.value);
   };
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (inputValue?.trim().length <= 1) return;
     onAddCategory(inputValue);
