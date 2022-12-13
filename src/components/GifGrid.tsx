@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getGifs } from "../helpers/getGifs";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifImage } from "./GifImage.js";
 
 export interface IImages {
@@ -11,22 +10,13 @@ export interface IImages {
 export const GifGrid = (props: { category: string }) => {
   const { category } = props;
 
-  const [images, setImages] = useState<IImages[]>([]);
-
-  const getImages = async () => {
-    const categoryImages: void = await getGifs(category);
-    setImages(categoryImages);
-  };
-
-  useEffect(() => {
-    getImages();
-  }, []);
+  const { images, isLoading } = useFetchGifs(category);
 
   return (
     <>
       <h4>{category}</h4>
       <div className="card-grid">
-        {images.map((image) => (
+        {images.map((image: IImages) => (
           <GifImage {...image} />
         ))}
       </div>
