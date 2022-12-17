@@ -15,6 +15,7 @@ export const GifGrid = (props: { category: string }) => {
   return (
     <>
       <h4>{category}</h4>
+      
       <div className="card-grid">
         {images.map((image: IImages) => (
           <GifImage {...image} />
