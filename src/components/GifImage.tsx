@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import { IImages } from "./GifGrid";
 
-export const GifImage = (props: IImages) => {
+const GifImage = (props: IImages) => {
   const { imgTitle, imdId, imgUrl } = props;
 
   return (
@@ -10,3 +11,11 @@ export const GifImage = (props: IImages) => {
     </div>
   );
 };
+
+GifImage.propTypes = {
+  imgTitle: PropTypes.string,
+  imdId: PropTypes.string,
+  imgUrl: PropTypes.string,
+};
+
+export { GifImage };
